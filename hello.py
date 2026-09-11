@@ -7,7 +7,8 @@ def PRINT_IT(x):
     if x==None: x=MSG
     print(x); sys.stdout.flush(); return True
 if __name__=="__main__":
-    a=MSG
+    name=input("Enter your name: ")
+    a=MSG+" from @"+name
     b=a
     PRINT_IT(b)
     os.system("true")
