@@ -1,14 +1,21 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# works with python2 and python3, cli, ipython -- whatever is around
-import sys,os
-MSG="Hello appsec world"
-def PRINT_IT(x):
-    if x==None: x=MSG
-    print(x); sys.stdout.flush(); return True
-if __name__=="__main__":
-    name=input("Enter your name: ")
-    a=MSG+" from @"+name
-    b=a
-    PRINT_IT(b)
-    os.system("true")
+import typer
+
+
+def main(
+    name: str,
+    lastname: str = typer.Option("", help="Фамилия пользователя."),
+    formal: bool = typer.Option(False, "--formal", "-f", help="Использовать формальное приветствие."),
+):
+    """
+    Говорит "Привет" пользователю, опционально используя фамилию и формальный стиль.
+    """
+    # формальное приветствие используется, если явно передан флаг --formal/-f
+    if formal:
+        print(f"Добрый день, {name} {lastname}!")
+    else:
+        # неформальное приветствие по умолчанию
+        print(f"Привет, {name}!")
+
+
+if __name__ == "__main__":
+    typer.run(main)
